@@ -21,15 +21,7 @@ class Network extends Component {
   }
 
   render() {
-    return (
-      <div>
-        {this.state.layers.map((layer, index) => {
-          layer.map(neuron => {
-            neuron;
-          });
-        })}
-      </div>
-    );
+    return <React.Fragment>{this.state.layers}</React.Fragment>;
   }
 }
 

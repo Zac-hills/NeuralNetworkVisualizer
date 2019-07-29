@@ -1,20 +1,27 @@
 import React, { Component } from "react";
 import "./index.css";
 class Neuron extends Component {
-  state = {
-    weights: [0.1, 0.9, 0.8],
-    connections: [],
-    positionX: 0,
-    positionY: 0,
-    width: 100,
-    height: 100
-  };
-
+  constructor(props) {
+    super(props);
+    Neuron.counter += 1;
+    this.state = {
+      weights: [],
+      connections: [],
+      positionX: 0,
+      positionY: 0,
+      width: 100,
+      height: 100,
+      id: Neuron.counter
+    };
+    console.log(props.weights);
+    this.state.weights = props.weights;
+  }
+  static counter = 0;
   render() {
     return (
       <svg width={this.state.width} height={this.state.height}>
         <defs>
-          <linearGradient id="linear-gradient">
+          <linearGradient id={`linear-gradient ${this.state.id}`}>
             {this.state.weights.map((weight, i) => (
               <stop
                 offset={i / this.state.weights.length}
@@ -29,7 +36,7 @@ class Neuron extends Component {
           width={this.state.width}
           height={this.state.height}
           rx="15"
-          fill="url(#linear-gradient)"
+          fill={`url('#linear-gradient ${this.state.id}')`}
         />
       </svg>
     );
