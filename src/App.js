@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Network from "./components/Network/Network";
+
+const testObject = {
+  layers: [
+    { layer: [{ weights: [0] }, { weights: [0] }, { weights: [0] }] },
+    {
+      layer: [
+        { weights: [0.1, 0.33, 0.5] },
+        { weights: [0.1, 0.2, 0.4] },
+        { weights: [0.2, 0.34, 0.76] }
+      ]
+    },
+    {
+      layer: [
+        { weights: [0.2, 0.43, 0.6] },
+        { weights: [0.5, 0.2, 0.1] },
+        { weights: [0.02, 0.15, 0.18] }
+      ]
+    }
+  ]
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Network neuralNetwork={testObject} />
     </div>
   );
 }
