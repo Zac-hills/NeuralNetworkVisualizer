@@ -14,14 +14,22 @@ class Network extends Component {
     console.log(props.neuralNetwork);
     props.neuralNetwork.layers.map((layer, index) => {
       this.state.layers.push([]);
-      layer.layer.map(neuron => {
-        this.state.layers[index].push(<Neuron weights={neuron.weights} />);
+      layer.layer.map((neuron, xIndex) => {
+        this.state.layers[index].push(
+          <Neuron weights={neuron.weights} y={index} x={xIndex} padding={50} />
+        );
       });
     });
   }
 
   render() {
-    return <React.Fragment>{this.state.layers}</React.Fragment>;
+    return (
+      <React.Fragment>
+        <svg width="100%" height="100%">
+          {this.state.layers}
+        </svg>
+      </React.Fragment>
+    );
   }
 }
 

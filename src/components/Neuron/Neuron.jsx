@@ -19,7 +19,7 @@ class Neuron extends Component {
   static counter = 0;
   render() {
     return (
-      <svg width={this.state.width} height={this.state.height}>
+      <React.Fragment>
         <defs>
           <linearGradient id={`linear-gradient ${this.state.id}`}>
             {this.state.weights.map((weight, i) => (
@@ -31,14 +31,18 @@ class Neuron extends Component {
           </linearGradient>
         </defs>
         <rect
-          x={this.state.positionX}
-          y={this.state.positionY}
+          x={
+            this.props.x * this.state.width + this.props.padding * this.props.x
+          }
+          y={
+            this.props.y * this.state.height + this.props.padding * this.props.y
+          }
           width={this.state.width}
           height={this.state.height}
           rx="15"
           fill={`url('#linear-gradient ${this.state.id}')`}
         />
-      </svg>
+      </React.Fragment>
     );
   }
 
